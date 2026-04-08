@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>meta_ads_strategy — Luxury AI Marketing Portfolio</title>
+    <meta
+      name="description"
+      content="Premium portfolio site for AI Creatives, AI Avatars, AI Marketing, Meta Ads, Brand Development, and Website Development."
+    />
+    <meta property="og:title" content="meta_ads_strategy — Luxury AI Marketing Portfolio" />
+    <meta
+      property="og:description"
+      content="Dark luxury bilingual portfolio for premium AI and marketing services."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#07090e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-noise" aria-hidden="true"></div>
+    <div class="bg-orb orb-left" aria-hidden="true"></div>
+    <div class="bg-orb orb-right" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a href="#top" class="brand-mark" aria-label="meta_ads_strategy home">
+          <span class="brand-mark__label">meta_ads_strategy</span>
+          <span class="brand-mark__sub">AI · Meta Ads · Luxury Digital</span>
+        </a>
+
+        <nav class="header-nav" aria-label="Primary">
+          <a href="#services" data-i18n="nav.services">Услуги</a>
+          <a href="#works" data-i18n="nav.works">Портфолио</a>
+          <a href="#order" data-i18n="nav.order">Заявка</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switch" role="group" aria-label="Language switcher">
+            <button class="lang-btn is-active" data-lang="ru" type="button">RU</button>
+            <button class="lang-btn" data-lang="en" type="button">EN</button>
+          </div>
+          <a class="ghost-link desktop-contact-link" id="instagramHeaderLink" target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal-up">
+            <p class="eyebrow" data-i18n="hero.eyebrow">AI CREATIVES · META ADS · WEBSITES</p>
+            <h1 class="hero-title" data-i18n="hero.title">
+              Премиальные digital-системы, которые выглядят дорого и продают точно.
+            </h1>
+            <p class="hero-text" data-i18n="hero.text">
+              Индивидуально. Для личности, бренда или бизнеса. Dark Luxury под мобильный экран,
+              контент и заявки.
+            </p>
+            <div class="hero-actions">
+              <a href="#services" class="btn btn--primary" data-i18n="hero.primaryCta">Смотреть услуги</a>
+              <button type="button" class="btn btn--secondary" id="openGlobalFormBtn" data-i18n="hero.secondaryCta">
+                Оставить заявку
+              </button>
+            </div>
+            <ul class="hero-points">
+              <li data-i18n="hero.point1">Top-quality визуал и структура</li>
+              <li data-i18n="hero.point2">RU / EN переключение</li>
+              <li data-i18n="hero.point3">Портфолио по каждому сервису</li>
+            </ul>
+          </div>
+
+          <div class="hero-showcase reveal-up delay-1">
+            <div class="hero-card hero-card--tall">
+              <span class="micro-tag" data-i18n="showcase.tag1">Luxury</span>
+              <div class="hero-card__content">
+                <p class="hero-card__kicker">AI Creatives</p>
+                <h2 class="hero-card__title" data-i18n="showcase.title1">Dark Luxury presentation for modern brands</h2>
+              </div>
+            </div>
+            <div class="hero-card hero-card--stack">
+              <div class="stack-item">
+                <span class="micro-tag">Meta Ads</span>
+                <p data-i18n="showcase.card2">Premium ad systems with clean offer positioning</p>
+              </div>
+              <div class="stack-item">
+                <span class="micro-tag">Web</span>
+                <p data-i18n="showcase.card3">Mobile-first portfolio sites with direct request flow</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container section-head reveal-up">
+          <p class="eyebrow" data-i18n="services.eyebrow">SERVICES</p>
+          <div class="section-title-row">
+            <h2 class="section-title" data-i18n="services.title">Что мы делаем</h2>
+            <p class="section-copy" data-i18n="services.text">
+              Минимум слов. Максимум ясности, вкуса и результата.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+      </section>
+
+      <section class="section" id="works">
+        <div class="container section-head reveal-up">
+          <p class="eyebrow" data-i18n="works.eyebrow">SELECTED WORK</p>
+          <div class="section-title-row">
+            <h2 class="section-title" data-i18n="works.title">Избранные работы</h2>
+            <p class="section-copy" data-i18n="works.text">
+              Фото, видео, лендинги и визуальные системы — в одном эстетическом языке.
+            </p>
+          </div>
+        </div>
+
+        <div class="works-toolbar container reveal-up delay-1">
+          <div class="chip-row" id="serviceFilters"></div>
+          <button type="button" class="text-btn" id="showAllWorksBtn" data-i18n="works.showAll">Показать всё</button>
+        </div>
+
+        <div class="container">
+          <div class="works-grid" id="featuredWorksGrid"></div>
+        </div>
+      </section>
+
+      <section class="section principles-section">
+        <div class="container principles-grid reveal-up">
+          <article class="principle-card">
+            <p class="principle-card__number">01</p>
+            <h3 data-i18n="principles.item1Title">Индивидуально</h3>
+            <p data-i18n="principles.item1Text">Не шаблон под всех. А под нишу, продукт и tone of voice.</p>
+          </article>
+          <article class="principle-card">
+            <p class="principle-card__number">02</p>
+            <h3 data-i18n="principles.item2Title">Премиально</h3>
+            <p data-i18n="principles.item2Text">Dark luxury, читаемая типографика и вкусный мобильный кадр.</p>
+          </article>
+          <article class="principle-card">
+            <p class="principle-card__number">03</p>
+            <h3 data-i18n="principles.item3Title">Практично</h3>
+            <p data-i18n="principles.item3Text">Портфолио, CTA и заявка — без лишнего шума и перегруза.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section order-section" id="order">
+        <div class="container order-grid">
+          <div class="order-copy reveal-up">
+            <p class="eyebrow" data-i18n="order.eyebrow">REQUEST</p>
+            <h2 class="section-title" data-i18n="order.title">Закажите проект</h2>
+            <p class="section-copy" data-i18n="order.text">
+              Откройте форму, выберите сервис и оставьте короткий запрос. Для быстрого контакта — Instagram.
+            </p>
+
+            <div class="contact-card">
+              <p class="contact-card__label" data-i18n="order.contactLabel">Контакт</p>
+              <a id="instagramProfileLink" class="contact-card__title" target="_blank" rel="noreferrer">@meta_ads_strategy</a>
+              <p class="contact-card__text" data-i18n="order.contactText">AI Marketing · Meta Ads · AI Creatives</p>
+              <div class="contact-actions">
+                <button type="button" class="btn btn--primary" id="openEmbeddedFormBtn" data-i18n="order.formCta">Открыть форму</button>
+                <a id="instagramCtaLink" class="btn btn--secondary" target="_blank" rel="noreferrer" data-i18n="order.instagramCta">
+                  Написать в Instagram
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-shell reveal-up delay-1" id="formShell">
+            <div class="form-shell__placeholder" id="formPlaceholder">
+              <p class="form-shell__eyebrow">Google Form</p>
+              <h3 data-i18n="order.placeholderTitle">Подключите вашу форму</h3>
+              <p data-i18n="order.placeholderText">
+                Вставьте global Google Form link или embed link в content.js — форма появится здесь автоматически.
+              </p>
+            </div>
+            <iframe
+              id="embeddedFormFrame"
+              title="Request form"
+              class="embedded-form is-hidden"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-brand">meta_ads_strategy</span>
+        <div class="footer-links">
+          <a href="#services" data-i18n="nav.services">Услуги</a>
+          <a href="#works" data-i18n="nav.works">Портфолио</a>
+          <a href="#order" data-i18n="nav.order">Заявка</a>
+          <a id="instagramFooterLink" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+        <p class="footer-copy">&copy; 2026 meta_ads_strategy. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="sticky-mobile-cta">
+      <button type="button" class="btn btn--primary btn--block" id="mobileRequestBtn" data-i18n="mobile.cta">Оставить заявку</button>
+    </div>
+
+    <div class="drawer-backdrop" id="serviceDrawerBackdrop"></div>
+    <aside class="service-drawer" id="serviceDrawer" aria-hidden="true" aria-labelledby="serviceDrawerTitle">
+      <button class="drawer-close" id="closeServiceDrawer" type="button" aria-label="Close drawer">×</button>
+      <div class="drawer-inner">
+        <p class="eyebrow" id="serviceDrawerEyebrow">Service</p>
+        <h2 id="serviceDrawerTitle">Service Title</h2>
+        <p class="drawer-description" id="serviceDrawerDescription"></p>
+        <div class="drawer-actions">
+          <button type="button" class="btn btn--primary" id="serviceRequestBtn">Request service</button>
+          <a href="#works" class="btn btn--secondary" id="drawerBrowseBtn">Browse work</a>
+        </div>
+
+        <div class="service-portfolio-grid" id="servicePortfolioGrid"></div>
+      </div>
+    </aside>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+      <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+        <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Close preview">×</button>
+        <div class="lightbox-media" id="lightboxMedia"></div>
+        <div class="lightbox-copy">
+          <p class="eyebrow" id="lightboxService"></p>
+          <h3 id="lightboxTitle"></h3>
+          <p id="lightboxDescription"></p>
+          <div class="lightbox-actions">
+            <button type="button" class="btn btn--primary" id="lightboxRequestBtn">Request</button>
+            <a id="lightboxInstagramBtn" class="btn btn--secondary" target="_blank" rel="noreferrer">Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
