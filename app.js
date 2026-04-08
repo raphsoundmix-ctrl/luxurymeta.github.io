@@ -1,7 +1,7 @@
 const site = window.SITE_DATA;
 
 const state = {
-  lang: localStorage.getItem("luxury-site-lang") || "ru",
+  lang: localStorage.getItem("luxury-site-lang") || "en",
   activeService: null,
   activeFilter: "all",
   lightboxItem: null
