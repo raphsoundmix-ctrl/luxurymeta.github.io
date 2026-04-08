@@ -738,28 +738,12 @@ button {
   font-weight: 800;
 }
 
-.form-shell-helper {
-  display: none !important;
-}
-
-.embedded-form {
-  width: 100%;
-  min-height: 100%;
-  height: 100%;
-  border-radius: calc(var(--radius-lg) - 8px);
-  background: white;
-}
-
 .sticky-mobile-cta {
   position: sticky;
   bottom: 0;
   z-index: 24;
   padding: 0.75rem 1rem 1rem;
   background: linear-gradient(180deg, rgba(10, 17, 40, 0), rgba(10, 17, 40, 0.96) 36%);
-}
-
-.desktop-contact-link {
-  display: none !important;
 }
 
 .service-drawer,
@@ -774,6 +758,11 @@ button {
 .lightbox-backdrop {
   background: rgba(2, 5, 12, 0.72);
   backdrop-filter: blur(6px);
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
 }
 
 .service-drawer {
