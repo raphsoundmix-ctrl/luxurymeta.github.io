@@ -1,20 +1,22 @@
 :root {
-  --bg: #07090e;
-  --bg-soft: #0f1219;
+  --bg: #0A1128;
+  --bg-soft: #101b3b;
   --surface: rgba(255, 255, 255, 0.045);
-  --surface-strong: rgba(255, 255, 255, 0.075);
-  --line: rgba(255, 255, 255, 0.09);
-  --text: #f5eee5;
-  --muted: #bcb5aa;
-  --gold: #d6b07a;
-  --gold-strong: #f0d4a9;
-  --burgundy: #4c0d1f;
-  --burgundy-soft: rgba(130, 18, 49, 0.3);
-  --card-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+  --surface-strong: rgba(255, 255, 255, 0.08);
+  --line: rgba(212, 175, 55, 0.18);
+  --text: #F5F5F5;
+  --muted: #cfd5df;
+  --gold: #D4AF37;
+  --gold-strong: #f0cd67;
+  --emerald: #046307;
+  --emerald-strong: #0a8f0f;
+  --emerald-soft: rgba(4, 99, 7, 0.2);
+  --gold-soft: rgba(212, 175, 55, 0.18);
+  --card-shadow: 0 22px 80px rgba(0, 0, 0, 0.38);
   --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 14px;
-  --header-height: 78px;
+  --header-height: 82px;
   --container: 1220px;
 }
 
@@ -30,9 +32,10 @@ body {
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at 15% 15%, rgba(133, 20, 54, 0.18), transparent 28%),
-    radial-gradient(circle at 85% 10%, rgba(214, 176, 122, 0.08), transparent 26%),
-    linear-gradient(180deg, #07090e 0%, #090d14 58%, #07090e 100%);
+    radial-gradient(circle at 10% 15%, rgba(4, 99, 7, 0.16), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(212, 175, 55, 0.10), transparent 24%),
+    radial-gradient(circle at 18% 80%, rgba(4, 99, 7, 0.10), transparent 22%),
+    linear-gradient(180deg, #0A1128 0%, #0d1635 48%, #0A1128 100%);
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
@@ -67,34 +70,34 @@ button {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.12;
+  opacity: 0.08;
   background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px);
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px);
   background-size: 30px 30px, 22px 22px;
   mix-blend-mode: screen;
 }
 
 .bg-orb {
   position: fixed;
-  width: 28rem;
-  height: 28rem;
+  width: 26rem;
+  height: 26rem;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.18;
+  opacity: 0.22;
   pointer-events: none;
 }
 
 .orb-left {
-  left: -8rem;
-  top: 10rem;
-  background: rgba(98, 18, 43, 0.9);
+  left: -6rem;
+  top: 8rem;
+  background: rgba(4, 99, 7, 0.72);
 }
 
 .orb-right {
-  right: -8rem;
-  top: 6rem;
-  background: rgba(214, 176, 122, 0.42);
+  right: -6rem;
+  top: 4rem;
+  background: rgba(212, 175, 55, 0.26);
 }
 
 .container {
@@ -103,7 +106,7 @@ button {
 }
 
 .section {
-  padding: 3rem 0;
+  padding: 3.4rem 0;
 }
 
 .site-header {
@@ -111,8 +114,8 @@ button {
   top: 0;
   z-index: 30;
   backdrop-filter: blur(18px);
-  background: linear-gradient(180deg, rgba(7, 9, 14, 0.92), rgba(7, 9, 14, 0.6));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(10, 17, 40, 0.96), rgba(10, 17, 40, 0.72));
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
 }
 
 .header-inner {
@@ -124,41 +127,32 @@ button {
 }
 
 .brand-mark {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  display: inline-flex;
+  align-items: center;
   min-width: 0;
 }
 
 .brand-mark__label {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.02em;
-}
-
-.brand-mark__sub {
-  color: var(--muted);
-  font-size: 0.73rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  color: var(--text);
 }
 
 .header-nav {
   display: none;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.4rem;
 }
 
-.header-nav a,
-.ghost-link {
+.header-nav a {
   color: var(--muted);
   font-size: 0.95rem;
   transition: color 0.2s ease;
 }
 
-.header-nav a:hover,
-.ghost-link:hover {
-  color: var(--text);
+.header-nav a:hover {
+  color: var(--gold-strong);
 }
 
 .header-actions {
@@ -172,7 +166,7 @@ button {
   align-items: center;
   padding: 0.25rem;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.14);
   border-radius: 999px;
 }
 
@@ -187,8 +181,9 @@ button {
 }
 
 .lang-btn.is-active {
-  background: linear-gradient(180deg, rgba(214, 176, 122, 0.26), rgba(214, 176, 122, 0.12));
-  color: var(--text);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.28), rgba(212, 175, 55, 0.12));
+  color: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.16);
 }
 
 .hero {
@@ -205,24 +200,23 @@ button {
 .hero-card,
 .stack-item,
 .contact-card,
-.form-shell,
 .principle-card,
 .service-card,
 .work-card,
 .service-drawer,
 .lightbox-dialog {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.10);
   box-shadow: var(--card-shadow);
 }
 
 .hero-copy {
   position: relative;
   overflow: hidden;
-  padding: 1.6rem;
+  padding: 1.8rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
-    linear-gradient(180deg, rgba(76, 13, 31, 0.45), rgba(7, 9, 14, 0.75));
+    linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.95), rgba(10, 17, 40, 0.96));
 }
 
 .hero-copy::after {
@@ -232,7 +226,7 @@ button {
   width: 14rem;
   height: 14rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(214, 176, 122, 0.22), transparent 70%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 70%);
 }
 
 .eyebrow,
@@ -316,15 +310,15 @@ button {
 }
 
 .btn--primary {
-  background: linear-gradient(180deg, rgba(214, 176, 122, 0.34), rgba(214, 176, 122, 0.18));
-  border: 1px solid rgba(240, 212, 169, 0.3);
-  color: var(--text);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.34), rgba(212, 175, 55, 0.16));
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  color: #fff;
 }
 
 .btn--secondary {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: var(--text);
+  background: linear-gradient(180deg, rgba(4, 99, 7, 0.20), rgba(4, 99, 7, 0.12));
+  border: 1px solid rgba(4, 99, 7, 0.32);
+  color: #fff;
 }
 
 .btn--block {
@@ -353,7 +347,7 @@ button {
   height: 8px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 12px rgba(214, 176, 122, 0.6);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
 }
 
 .hero-showcase {
@@ -367,8 +361,8 @@ button {
   padding: 1.3rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01)),
-    linear-gradient(180deg, rgba(76, 13, 31, 0.35), rgba(11, 14, 21, 0.88));
+    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.92), rgba(4, 99, 7, 0.12));
   min-height: 220px;
 }
 
@@ -391,7 +385,7 @@ button {
   position: absolute;
   inset: 1rem;
   border-radius: calc(var(--radius-lg) - 10px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.08);
   pointer-events: none;
 }
 
@@ -426,8 +420,8 @@ button {
   padding: 1.2rem;
   border-radius: var(--radius-md);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(214, 176, 122, 0.06), rgba(76, 13, 31, 0.16));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.92), rgba(4, 99, 7, 0.12));
 }
 
 .stack-item p {
@@ -470,7 +464,7 @@ button {
   border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(13, 16, 25, 0.8), rgba(76, 13, 31, 0.18));
+    linear-gradient(180deg, rgba(16, 27, 59, 0.95), rgba(4, 99, 7, 0.10));
   overflow: hidden;
 }
 
@@ -481,7 +475,7 @@ button {
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(214, 176, 122, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.14), transparent 70%);
 }
 
 .service-card__head {
@@ -495,12 +489,12 @@ button {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: linear-gradient(180deg, rgba(214, 176, 122, 0.18), rgba(214, 176, 122, 0.07));
-  border: 1px solid rgba(214, 176, 122, 0.25);
+  background: linear-gradient(180deg, rgba(4, 99, 7, 0.22), rgba(4, 99, 7, 0.10));
+  border: 1px solid rgba(4, 99, 7, 0.28);
   display: grid;
   place-items: center;
   font-weight: 800;
-  color: var(--gold-strong);
+  color: #fff;
   flex: 0 0 auto;
 }
 
@@ -529,7 +523,7 @@ button {
   min-height: 34px;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.14);
   background: rgba(255, 255, 255, 0.04);
   color: var(--muted);
   font-size: 0.82rem;
@@ -574,9 +568,9 @@ button {
 }
 
 .filter-chip.is-active {
-  background: linear-gradient(180deg, rgba(214, 176, 122, 0.22), rgba(214, 176, 122, 0.1));
-  color: var(--text);
-  border-color: rgba(214, 176, 122, 0.28);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.22), rgba(212, 175, 55, 0.10));
+  color: #fff;
+  border-color: rgba(212, 175, 55, 0.28);
 }
 
 .text-btn {
@@ -595,8 +589,8 @@ button {
   overflow: hidden;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(10, 12, 18, 0.88), rgba(76, 13, 31, 0.18));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.95), rgba(4, 99, 7, 0.08));
 }
 
 .work-card__media {
@@ -604,8 +598,8 @@ button {
   width: 100%;
   overflow: hidden;
   background:
-    radial-gradient(circle at 30% 30%, rgba(214, 176, 122, 0.18), transparent 30%),
-    linear-gradient(160deg, #11151e 0%, #0a0d15 38%, #280814 100%);
+    radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.16), transparent 30%),
+    linear-gradient(160deg, #121c40 0%, #0A1128 38%, #0d1b39 100%);
   position: relative;
 }
 
@@ -622,8 +616,8 @@ button {
   place-items: center;
   color: var(--text);
   font-size: 1.4rem;
-  background: rgba(7, 9, 14, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 17, 40, 0.78);
+  border: 1px solid rgba(212, 175, 55, 0.16);
   z-index: 2;
 }
 
@@ -643,7 +637,7 @@ button {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 0.9;
-  color: rgba(245, 238, 229, 0.92);
+  color: rgba(245, 245, 245, 0.94);
 }
 
 .work-card__placeholder small {
@@ -710,8 +704,8 @@ button {
   padding: 1.4rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(12, 16, 24, 0.82), rgba(214, 176, 122, 0.05));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.94), rgba(4, 99, 7, 0.10));
 }
 
 .principle-card h3 {
@@ -720,20 +714,21 @@ button {
 }
 
 .order-grid {
+  grid-template-columns: 1fr;
   align-items: stretch;
 }
 
-.contact-card,
-.form-shell {
-  padding: 1.3rem;
-  border-radius: var(--radius-lg);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(11, 15, 22, 0.9), rgba(76, 13, 31, 0.15));
+.order-copy {
+  max-width: 900px;
 }
 
 .contact-card {
   margin-top: 1.35rem;
+  padding: 1.35rem;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.96), rgba(4, 99, 7, 0.12));
 }
 
 .contact-card__title {
@@ -743,19 +738,8 @@ button {
   font-weight: 800;
 }
 
-.form-shell {
-  position: relative;
-  min-height: 520px;
-  overflow: hidden;
-}
-
-.form-shell__placeholder {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  gap: 0.75rem;
-  min-height: 100%;
-  padding: 1.2rem;
+.form-shell-helper {
+  display: none !important;
 }
 
 .embedded-form {
@@ -771,11 +755,11 @@ button {
   bottom: 0;
   z-index: 24;
   padding: 0.75rem 1rem 1rem;
-  background: linear-gradient(180deg, rgba(7, 9, 14, 0), rgba(7, 9, 14, 0.96) 36%);
+  background: linear-gradient(180deg, rgba(10, 17, 40, 0), rgba(10, 17, 40, 0.96) 36%);
 }
 
 .desktop-contact-link {
-  display: none;
+  display: none !important;
 }
 
 .service-drawer,
@@ -788,7 +772,7 @@ button {
 
 .drawer-backdrop,
 .lightbox-backdrop {
-  background: rgba(2, 3, 6, 0.68);
+  background: rgba(2, 5, 12, 0.72);
   backdrop-filter: blur(6px);
 }
 
@@ -797,8 +781,8 @@ button {
   max-height: 92vh;
   border-radius: 28px 28px 0 0;
   background:
-    linear-gradient(180deg, rgba(11, 14, 21, 0.96), rgba(7, 9, 14, 0.98)),
-    linear-gradient(180deg, rgba(76, 13, 31, 0.16), transparent);
+    linear-gradient(180deg, rgba(10, 17, 40, 0.97), rgba(10, 17, 40, 0.98)),
+    linear-gradient(180deg, rgba(4, 99, 7, 0.12), transparent);
   box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.45);
   overflow: auto;
 }
@@ -816,7 +800,7 @@ button {
   height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.16);
   font-size: 1.7rem;
   line-height: 1;
 }
@@ -835,13 +819,13 @@ button {
   overflow: auto;
   border-radius: 24px;
   background:
-    linear-gradient(180deg, rgba(9, 11, 17, 0.96), rgba(7, 9, 14, 0.98));
+    linear-gradient(180deg, rgba(10, 17, 40, 0.97), rgba(10, 17, 40, 0.99));
 }
 
 .lightbox-media {
   aspect-ratio: 4 / 5;
   background:
-    linear-gradient(160deg, #11151e 0%, #0a0d15 38%, #280814 100%);
+    linear-gradient(160deg, #121c40 0%, #0A1128 38%, #102553 100%);
 }
 
 .lightbox-copy {
@@ -850,7 +834,6 @@ button {
   gap: 0.7rem;
 }
 
-/* ── Animated overlay system ── */
 .drawer-backdrop,
 .lightbox {
   opacity: 0;
@@ -926,13 +909,8 @@ button {
     display: flex;
   }
 
-  .desktop-contact-link {
-    display: inline-flex;
-  }
-
-  .hero-grid,
-  .order-grid {
-    grid-template-columns: 1.1fr 0.9fr;
+  .hero-grid {
+    grid-template-columns: 1.08fr 0.92fr;
     align-items: stretch;
   }
 
@@ -983,14 +961,8 @@ button {
     padding: 5rem 0;
   }
 
-  .hero-grid {
-    grid-template-columns: 1.08fr 0.92fr;
-    gap: 1.25rem;
-  }
-
   .hero-copy,
   .contact-card,
-  .form-shell,
   .service-card,
   .principle-card,
   .work-card {
@@ -1018,14 +990,12 @@ button {
   }
 }
 
-/* ── Focus states for accessibility ── */
 .btn:focus-visible,
 .lang-btn:focus-visible,
 .filter-chip:focus-visible,
 .service-card__button:focus-visible,
 .drawer-close:focus-visible,
 .lightbox-close:focus-visible,
-.ghost-link:focus-visible,
 .header-nav a:focus-visible,
 .work-card__trigger:focus-visible {
   outline: 2px solid var(--gold);
@@ -1033,10 +1003,9 @@ button {
   border-radius: 8px;
 }
 
-/* ── Footer ── */
 .site-footer {
   padding: 2.5rem 0 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
 }
 
 .footer-inner {
@@ -1076,28 +1045,25 @@ button {
   opacity: 0.6;
 }
 
-/* ── Service card hover ── */
 .service-card {
   transition: border-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 
 .service-card:hover {
-  border-color: rgba(214, 176, 122, 0.2);
+  border-color: rgba(212, 175, 55, 0.22);
   transform: translateY(-3px);
 }
 
-/* ── Work card hover ── */
 .work-card {
   transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 .work-card:hover {
-  border-color: rgba(214, 176, 122, 0.18);
+  border-color: rgba(212, 175, 55, 0.2);
   transform: translateY(-2px);
 }
 
-/* ── Desktop drawer slide from right ── */
 @media (min-width: 1024px) {
   .service-drawer {
     transform: translateX(100%);
@@ -1116,7 +1082,6 @@ button {
   .reveal-up,
   .btn,
   .header-nav a,
-  .ghost-link,
   .filter-chip,
   .service-card,
   .work-card,
