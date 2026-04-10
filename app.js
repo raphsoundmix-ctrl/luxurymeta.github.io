@@ -832,6 +832,7 @@ function openServiceDrawer(serviceId, options = {}) {
     els.serviceDrawer.classList.add("is-visible");
     els.serviceDrawer.setAttribute("aria-hidden", "false");
     els.serviceDrawerBackdrop?.classList.add("is-visible");
+    document.querySelector(".site-header")?.classList.add("profile-open");
   }
 
   setBodyLock();
@@ -845,6 +846,7 @@ function closeServiceDrawer() {
     els.serviceDrawer.setAttribute("aria-hidden", "true");
   }
   els.serviceDrawerBackdrop?.classList.remove("is-visible");
+  document.querySelector(".site-header")?.classList.remove("profile-open");
   setBodyLock();
 }
 

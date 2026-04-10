@@ -118,7 +118,26 @@ button {
   border-bottom: 1px solid rgba(212, 175, 55, 0.08);
 }
 
+.header-profile-bg {
+  position: absolute;
+  inset: 0;
+  background: url('profile-bg.jpg') center 25% / cover no-repeat;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.site-header.profile-open {
+  background: linear-gradient(180deg, rgba(10, 17, 40, 0.76), rgba(10, 17, 40, 0.58));
+}
+
+.site-header.profile-open .header-profile-bg {
+  opacity: 0.52;
+}
+
 .header-inner {
+  position: relative;
+  z-index: 1;
   min-height: var(--header-height);
   display: flex;
   align-items: center;
