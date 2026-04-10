@@ -27,6 +27,13 @@
 
   <body>
     <div class="bg-noise" aria-hidden="true"></div>
+
+    <!-- Parallax hero background image layer -->
+    <div class="hero-parallax-bg" id="heroParallaxBg" aria-hidden="true">
+      <div class="hero-parallax-img" id="heroParallaxImg"></div>
+      <div class="hero-parallax-overlay"></div>
+    </div>
+
     <div class="bg-orb orb-left" aria-hidden="true"></div>
     <div class="bg-orb orb-right" aria-hidden="true"></div>
 
@@ -53,9 +60,8 @@
     </header>
 
     <main>
-      <section class="hero section hero--with-photo">
-  <div class="hero-bg"></div>
-  <div class="container hero-grid">
+      <section class="hero section hero--with-photo" id="heroSection">
+        <div class="container hero-grid">
           <div class="hero-copy reveal-up">
             <p class="eyebrow" data-i18n="hero.eyebrow">AI CREATIVES · META ADS · WEBSITES</p>
             <h1 class="hero-title" data-i18n="hero.title">
@@ -245,5 +251,42 @@
 
     <script src="content.js"></script>
     <script src="app.js"></script>
+
+    <!-- Parallax scroll controller -->
+    <script>
+      (function () {
+        var bg = document.getElementById('heroParallaxBg');
+        var heroSection = document.getElementById('heroSection');
+        if (!bg || !heroSection) return;
+
+        var ticking = false;
+
+        function updateParallax() {
+          var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          var heroH = heroSection.offsetHeight;
+
+          // Opacity: full at top, fade out as hero scrolls away
+          var progress = Math.min(scrollY / (heroH * 0.65), 1);
+          var opacity = 1 - progress;
+
+          // Parallax shift: image moves up slower than scroll (depth illusion)
+          var translateY = scrollY * 0.38;
+
+          bg.style.opacity = opacity;
+          bg.style.transform = 'translateY(' + translateY + 'px)';
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateParallax();
+      })();
+    </script>
   </body>
 </html>
