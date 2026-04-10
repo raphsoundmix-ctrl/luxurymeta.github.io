@@ -66,6 +66,7 @@ button {
   cursor: pointer;
 }
 
+/* ─── Noise texture overlay ─── */
 .bg-noise {
   position: fixed;
   inset: 0;
@@ -76,8 +77,10 @@ button {
     radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px);
   background-size: 30px 30px, 22px 22px;
   mix-blend-mode: screen;
+  z-index: 0;
 }
 
+/* ─── Ambient orbs ─── */
 .bg-orb {
   position: fixed;
   width: 26rem;
@@ -86,6 +89,7 @@ button {
   filter: blur(90px);
   opacity: 0.22;
   pointer-events: none;
+  z-index: 0;
 }
 
 .orb-left {
@@ -100,44 +104,72 @@ button {
   background: rgba(212, 175, 55, 0.26);
 }
 
+/* ─── Parallax hero background ─── */
+.hero-parallax-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+  transition: opacity 0.05s linear;
+}
+
+.hero-parallax-img {
+  position: absolute;
+  inset: -20% 0 -20% 0;   /* oversized so parallax shift doesn't reveal edges */
+  background-image: url('hero-bg.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+}
+
+/* Multi-layer overlay: darkens image, adds brand colour cast, vignette */
+.hero-parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* vignette edges */
+    radial-gradient(ellipse at 50% 50%, transparent 38%, rgba(10, 17, 40, 0.82) 100%),
+    /* gold accent top-right */
+    radial-gradient(circle at 85% 8%, rgba(212, 175, 55, 0.10), transparent 38%),
+    /* emerald accent bottom-left */
+    radial-gradient(circle at 12% 90%, rgba(4, 99, 7, 0.14), transparent 36%),
+    /* base dark overlay — adjust opacity (currently 0.72) for lighter/darker feel */
+    linear-gradient(180deg,
+      rgba(10, 17, 40, 0.62) 0%,
+      rgba(10, 17, 40, 0.50) 40%,
+      rgba(10, 17, 40, 0.70) 70%,
+      rgba(10, 17, 40, 0.94) 100%
+    );
+}
+
+/* ─── Layout container ─── */
 .container {
+  position: relative;
+  z-index: 2;
   width: min(var(--container), calc(100% - 32px));
   margin: 0 auto;
 }
 
 .section {
   padding: 3.4rem 0;
+  position: relative;
+  z-index: 2;
 }
 
+/* ─── Header ─── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 30;
-  backdrop-filter: blur(18px);
-  background: linear-gradient(180deg, rgba(10, 17, 40, 0.96), rgba(10, 17, 40, 0.72));
-  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
-}
-
-.header-profile-bg {
-  position: absolute;
-  inset: 0;
-  background: url('profile-bg.jpg') center 25% / cover no-repeat;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.site-header.profile-open {
-  background: linear-gradient(180deg, rgba(10, 17, 40, 0.76), rgba(10, 17, 40, 0.58));
-}
-
-.site-header.profile-open .header-profile-bg {
-  opacity: 0.52;
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  background: linear-gradient(180deg, rgba(10, 17, 40, 0.88), rgba(10, 17, 40, 0.68));
+  border-bottom: 1px solid rgba(212, 175, 55, 0.10);
+  box-shadow: 0 1px 0 rgba(212, 175, 55, 0.06), 0 8px 32px rgba(0, 0, 0, 0.22);
 }
 
 .header-inner {
-  position: relative;
-  z-index: 1;
   min-height: var(--header-height);
   display: flex;
   align-items: center;
@@ -167,11 +199,30 @@ button {
 .header-nav a {
   color: var(--muted);
   font-size: 0.95rem;
+  font-weight: 500;
   transition: color 0.2s ease;
+  position: relative;
+}
+
+.header-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
 
 .header-nav a:hover {
   color: var(--gold-strong);
+}
+
+.header-nav a:hover::after {
+  transform: scaleX(1);
 }
 
 .header-actions {
@@ -197,6 +248,7 @@ button {
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .lang-btn.is-active {
@@ -205,8 +257,11 @@ button {
   border: 1px solid rgba(212, 175, 55, 0.16);
 }
 
+/* ─── Hero section ─── */
 .hero {
   padding-top: clamp(2.2rem, 3.5vw, 4rem);
+  /* The hero sits over the parallax background */
+  background: transparent;
 }
 
 .hero-grid {
@@ -214,6 +269,7 @@ button {
   gap: 1.2rem;
 }
 
+/* Cards / surfaces share border + shadow */
 .hero-copy,
 .hero-showcase,
 .hero-card,
@@ -231,11 +287,22 @@ button {
 .hero-copy {
   position: relative;
   overflow: hidden;
-  padding: 1.8rem;
+  padding: 2rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
-    linear-gradient(180deg, rgba(16, 27, 59, 0.95), rgba(10, 17, 40, 0.96));
+    linear-gradient(140deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.88), rgba(10, 17, 40, 0.94));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(212, 175, 55, 0.14);
+}
+
+.hero-copy::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.28), transparent);
 }
 
 .hero-copy::after {
@@ -248,6 +315,7 @@ button {
   background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 70%);
 }
 
+/* ─── Typography ─── */
 .eyebrow,
 .micro-tag,
 .form-shell__eyebrow,
@@ -307,6 +375,7 @@ button {
   margin-top: 1.35rem;
 }
 
+/* ─── Buttons ─── */
 .btn {
   position: relative;
   display: inline-flex;
@@ -314,36 +383,51 @@ button {
   justify-content: center;
   gap: 0.6rem;
   min-height: 52px;
-  padding: 0.9rem 1.15rem;
+  padding: 0.9rem 1.4rem;
   border-radius: 999px;
   font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
     background 0.2s ease,
-    color 0.2s ease;
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn--primary {
-  background: linear-gradient(180deg, rgba(212, 175, 55, 0.34), rgba(212, 175, 55, 0.16));
-  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.36), rgba(212, 175, 55, 0.16));
+  border: 1px solid rgba(212, 175, 55, 0.32);
   color: #fff;
+  box-shadow: 0 4px 24px rgba(212, 175, 55, 0.12);
+}
+
+.btn--primary:hover {
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.46), rgba(212, 175, 55, 0.22));
+  box-shadow: 0 6px 32px rgba(212, 175, 55, 0.20);
 }
 
 .btn--secondary {
-  background: linear-gradient(180deg, rgba(4, 99, 7, 0.20), rgba(4, 99, 7, 0.12));
-  border: 1px solid rgba(4, 99, 7, 0.32);
+  background: linear-gradient(180deg, rgba(4, 99, 7, 0.22), rgba(4, 99, 7, 0.12));
+  border: 1px solid rgba(4, 99, 7, 0.36);
   color: #fff;
+  box-shadow: 0 4px 24px rgba(4, 99, 7, 0.08);
+}
+
+.btn--secondary:hover {
+  background: linear-gradient(180deg, rgba(4, 99, 7, 0.32), rgba(4, 99, 7, 0.18));
 }
 
 .btn--block {
   width: 100%;
 }
 
+/* ─── Hero bullet points ─── */
 .hero-points {
   margin: 1.5rem 0 0;
   padding: 0;
@@ -355,6 +439,7 @@ button {
 .hero-points li {
   color: var(--text);
   font-weight: 600;
+  font-size: 0.92rem;
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -362,6 +447,7 @@ button {
 
 .hero-points li::before {
   content: "";
+  flex: 0 0 auto;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -369,6 +455,7 @@ button {
   box-shadow: 0 0 12px rgba(212, 175, 55, 0.45);
 }
 
+/* ─── Hero showcase cards ─── */
 .hero-showcase {
   display: grid;
   gap: 1rem;
@@ -380,8 +467,10 @@ button {
   padding: 1.3rem;
   border-radius: var(--radius-lg);
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
-    linear-gradient(180deg, rgba(16, 27, 59, 0.92), rgba(4, 99, 7, 0.12));
+    linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(16, 27, 59, 0.88), rgba(4, 99, 7, 0.14));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   min-height: 220px;
 }
 
@@ -440,7 +529,9 @@ button {
   border-radius: var(--radius-md);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(16, 27, 59, 0.92), rgba(4, 99, 7, 0.12));
+    linear-gradient(180deg, rgba(16, 27, 59, 0.88), rgba(4, 99, 7, 0.12));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .stack-item p {
@@ -450,6 +541,7 @@ button {
   line-height: 1.5;
 }
 
+/* ─── Section headers ─── */
 .section-head {
   display: grid;
   gap: 0.8rem;
@@ -464,6 +556,7 @@ button {
   font-size: clamp(2.15rem, 6vw, 4.2rem);
 }
 
+/* ─── Grid layouts ─── */
 .services-grid,
 .works-grid,
 .service-portfolio-grid,
@@ -477,6 +570,7 @@ button {
   margin-top: 1.3rem;
 }
 
+/* ─── Service cards ─── */
 .service-card {
   position: relative;
   padding: 1.25rem;
@@ -567,6 +661,7 @@ button {
   margin-left: 0.45rem;
 }
 
+/* ─── Works toolbar ─── */
 .works-toolbar {
   margin-top: 1.3rem;
   display: flex;
@@ -603,6 +698,7 @@ button {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
+/* ─── Work cards ─── */
 .work-card {
   position: relative;
   overflow: hidden;
@@ -711,6 +807,7 @@ button {
   font-size: 0.78rem;
 }
 
+/* ─── Principles section ─── */
 .principles-section {
   padding-top: 2rem;
 }
@@ -720,11 +817,17 @@ button {
 }
 
 .principle-card {
-  padding: 1.4rem;
+  padding: 1.6rem;
   border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
     linear-gradient(180deg, rgba(16, 27, 59, 0.94), rgba(4, 99, 7, 0.10));
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.principle-card:hover {
+  border-color: rgba(212, 175, 55, 0.18);
+  transform: translateY(-2px);
 }
 
 .principle-card h3 {
@@ -732,6 +835,7 @@ button {
   font-size: 1.25rem;
 }
 
+/* ─── Order / Contacts section ─── */
 .order-grid {
   grid-template-columns: 1fr;
   align-items: stretch;
@@ -743,11 +847,12 @@ button {
 
 .contact-card {
   margin-top: 1.35rem;
-  padding: 1.35rem;
+  padding: 1.6rem;
   border-radius: var(--radius-lg);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
     linear-gradient(180deg, rgba(16, 27, 59, 0.96), rgba(4, 99, 7, 0.12));
+  border-color: rgba(212, 175, 55, 0.14);
 }
 
 .contact-card__title {
@@ -755,8 +860,15 @@ button {
   margin-top: 0.55rem;
   font-size: 1.35rem;
   font-weight: 800;
+  color: var(--gold-strong);
+  transition: color 0.2s ease;
 }
 
+.contact-card__title:hover {
+  color: #fff;
+}
+
+/* ─── Sticky mobile CTA ─── */
 .sticky-mobile-cta {
   position: sticky;
   bottom: 0;
@@ -765,6 +877,7 @@ button {
   background: linear-gradient(180deg, rgba(10, 17, 40, 0), rgba(10, 17, 40, 0.96) 36%);
 }
 
+/* ─── Drawer & Lightbox ─── */
 .service-drawer,
 .drawer-backdrop,
 .lightbox {
@@ -811,6 +924,13 @@ button {
   border: 1px solid rgba(212, 175, 55, 0.16);
   font-size: 1.7rem;
   line-height: 1;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.drawer-close:hover,
+.lightbox-close:hover {
+  background: rgba(212, 175, 55, 0.10);
+  border-color: rgba(212, 175, 55, 0.28);
 }
 
 .lightbox {
@@ -842,6 +962,7 @@ button {
   gap: 0.7rem;
 }
 
+/* ─── Visibility transitions ─── */
 .drawer-backdrop,
 .lightbox {
   opacity: 0;
@@ -881,6 +1002,7 @@ button {
   display: none !important;
 }
 
+/* ─── Reveal animations ─── */
 .reveal-up {
   animation: revealUp 0.9s ease both;
 }
@@ -904,6 +1026,29 @@ button {
   }
 }
 
+/* ─── Card hover states ─── */
+.service-card {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.service-card:hover {
+  border-color: rgba(212, 175, 55, 0.24);
+  transform: translateY(-3px);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.work-card {
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+  border-color: rgba(212, 175, 55, 0.22);
+  transform: translateY(-2px);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+/* ─── Responsive breakpoints ─── */
 @media (min-width: 720px) {
   .container {
     width: min(var(--container), calc(100% - 48px));
@@ -923,7 +1068,7 @@ button {
   }
 
   .hero-copy {
-    padding: 2rem;
+    padding: 2.5rem;
   }
 
   .section-title-row {
@@ -995,9 +1140,15 @@ button {
     width: min(660px, calc(100vw - 2rem));
     max-height: calc(100vh - 2rem);
     border-radius: 32px;
+    transform: translateX(100%);
+  }
+
+  .service-drawer.is-visible {
+    transform: translateX(0);
   }
 }
 
+/* ─── Focus accessibility ─── */
 .btn:focus-visible,
 .lang-btn:focus-visible,
 .filter-chip:focus-visible,
@@ -1011,7 +1162,10 @@ button {
   border-radius: 8px;
 }
 
+/* ─── Footer ─── */
 .site-footer {
+  position: relative;
+  z-index: 2;
   padding: 2.5rem 0 3rem;
   border-top: 1px solid rgba(212, 175, 55, 0.08);
 }
@@ -1053,56 +1207,7 @@ button {
   opacity: 0.6;
 }
 
-.service-card {
-  transition: border-color 0.3s ease, transform 0.3s ease;
-  cursor: pointer;
-}
-
-.service-card:hover {
-  border-color: rgba(212, 175, 55, 0.22);
-  transform: translateY(-3px);
-}
-
-.work-card {
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-
-.work-card:hover {
-  border-color: rgba(212, 175, 55, 0.2);
-  transform: translateY(-2px);
-}
-
-@media (min-width: 1024px) {
-  .service-drawer {
-    transform: translateX(100%);
-  }
-
-  .service-drawer.is-visible {
-    transform: translateX(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .reveal-up,
-  .btn,
-  .header-nav a,
-  .filter-chip,
-  .service-card,
-  .work-card,
-  .service-drawer,
-  .drawer-backdrop,
-  .lightbox,
-  .lightbox-dialog {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* --- Explore-style media system --- */
+/* ─── Explore-style media system ─── */
 .work-card__trigger {
   all: unset;
   display: block;
@@ -1433,7 +1538,7 @@ button {
   }
 }
 
-/* --- Drive video poster mode (feed cards) --- */
+/* ─── Drive video poster mode ─── */
 .media-video-shell--poster {
   cursor: pointer;
   background: #070d20;
@@ -1476,4 +1581,26 @@ button {
 
 .media-video-shell--iframe {
   background: #070d20;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-up,
+  .btn,
+  .header-nav a,
+  .filter-chip,
+  .service-card,
+  .work-card,
+  .service-drawer,
+  .drawer-backdrop,
+  .lightbox,
+  .lightbox-dialog,
+  .hero-parallax-bg {
+    animation: none !important;
+    transition: none !important;
+  }
 }
